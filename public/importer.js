@@ -64,9 +64,17 @@ export async function parseLegacyWorkbook(file){
   ingredients.push(obj);byName.set(key,obj);
  }
  const recipeSheets=[];
- for(const [sheetName,s] of sheets){if(sheetName==='Modelo'||sheetName==='Ingredientes'||sheetName==='BANCO DE DADOS Turbinado')continue;
-  // Estrutura oficial: E4 nome da receita, ingredientes em B5:B21, quantidade em E.
-  const name=String(s.at('E4')||sheetName).trim();
+ // O título em E4 pode ser genérico ou repetido. A aba identifica a receita específica.
+ const candidates=[...sheets.entries()].filter(([name])=>!['Modelo','Ingredientes','BANCO DE DADOS Turbinado'].includes(name));
+ const titleCounts=new Map();
+ for(const [sheetName,s] of candidates){
+  const key=normalized(s.at('E4'));if(key)titleCounts.set(key,(titleCounts.get(key)||0)+1);
+ }
+ for(const [sheetName,s] of candidates){
+  const rawTitle=String(s.at('E4')??'').replace(/\\s+/g,' ').trim();
+  const duplicateTitle=rawTitle&&titleCounts.get(normalized(rawTitle))>1;
+  const name=(!rawTitle||duplicateTitle)?sheetName:rawTitle;
+  if(duplicateTitle&&normalized(rawTitle)!==normalized(sheetName))warn(`Receita «${sheetName}»: título genérico «${rawTitle}» substituído pelo nome da aba.`);
   const hasMaterials=Array.from({length:17},(_,i)=>String(s.at(`B${i+5}`)||'').trim()).some(Boolean);
   if(!hasMaterials){warn(`Receita «${name}» sem componentes preenchidos; não importada.`);continue}
   const yieldQuantity=nval(s.at('J4'));const productionHours=nval(s.at('J6'));const sellingPrice=nval(s.at('P6'));
@@ -77,6 +85,8 @@ export async function parseLegacyWorkbook(file){
   warn(`Receita «${name}»: confirme a unidade de rendimento (un/g/ml) após importar.`);
   if(sellingPrice!==null&&sellingPrice<0)warn(`Receita «${name}»: preço de venda negativo ignorado.`);
   recipes.push(recipe);recipeMap.set(normalized(name),recipe);
+  // A aba funciona como identificador adicional, sem confundir títulos genéricos.
+  if(normalized(sheetName)!==normalized(name))recipeMap.set(normalized(sheetName),recipe);
   recipeSheets.push({sheetName,s,recipe});
  }
  // Fontes ligadas a receitas devem sobrepor nomes de ingredientes, quando identificadas.
