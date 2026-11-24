@@ -78,3 +78,10 @@ td{border-bottom-color:#edf0f7}
 .markdown-output ul,.markdown-output ol{margin:8px 0 16px;padding-left:26px}
 .markdown-output li{padding-left:2px;margin:5px 0}
 @media(max-width:600px){.preparation-panel textarea{min-height:220px}.preparation-preview{padding:12px}.markdown-toolbar{gap:5px}.markdown-toolbar button{padding:8px 10px}}
+
+/* v0.11 — modo de preparo prioriza a leitura formatada */
+.preparation-heading{align-items:center;margin-bottom:16px;flex-wrap:wrap}
+.preparation-heading h2{margin:0}
+.preparation-readonly{padding:8px 0 12px;min-height:100px}
+.preparation-readonly p:last-child,.preparation-readonly ul:last-child,.preparation-readonly ol:last-child{margin-bottom:0}
+@media(max-width:600px){.preparation-heading{align-items:flex-start}.preparation-heading button{width:100%}}
