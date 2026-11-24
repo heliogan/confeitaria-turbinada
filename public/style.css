@@ -119,3 +119,41 @@ td{border-bottom-color:#edf0f7}
   #ingredient-results td.actions button.danger,
   .recipe-list-panel td.actions button.danger {background:#fff8f8;border-color:#f0d9d7;}
 }
+
+/* Aviso de backup compacto, acessível e expansível */
+.backup-reminder{display:block!important;padding:0!important;overflow:hidden}
+.backup-reminder summary{display:flex;justify-content:space-between;align-items:center;gap:12px;cursor:pointer;padding:12px 15px;font-weight:700;list-style:none}
+.backup-reminder summary::-webkit-details-marker{display:none}
+.backup-reminder summary:focus-visible{outline:2px solid #b78621;outline-offset:-3px}
+.backup-reminder .backup-expand-hint{font-size:12px;font-weight:500;white-space:nowrap}
+.backup-reminder .backup-expand-hint:after{content:" ▾"}
+.backup-reminder[open] .backup-expand-hint:after{content:" ▴"}
+.backup-reminder-detail{padding:0 15px 15px}
+.backup-reminder-detail p{color:inherit;margin-bottom:12px}
+.backup-reminder-detail button{max-width:100%;width:auto}
+@media(max-width:700px){
+ .backup-reminder{margin:0 0 18px!important}
+ .backup-reminder summary{padding:11px 13px}
+ .backup-reminder-detail{padding:0 13px 13px}
+ /* Cada ingrediente da composição torna-se uma linha-cartão legível sem scroll horizontal */
+ .composition-list .table-wrap{overflow:visible}
+ .composition-list table,.composition-list tbody{display:block;width:100%}
+ .composition-list thead{display:none}
+ .composition-list tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;padding:12px 0;border-bottom:1px solid #e8edf5;min-width:0}
+ .composition-list tr:last-child{border-bottom:0}
+ .composition-list td{display:block;padding:0;border:0;min-width:0;overflow-wrap:anywhere}
+ .composition-list td:first-child{grid-column:1/2;grid-row:1/2;color:#0b2b64;font-weight:600}
+ .composition-list td:nth-child(2){grid-column:1/-1;grid-row:2;min-width:0;color:#53637e;font-size:13px}
+ .composition-list td:nth-child(2):not(:has(form)):before{content:"Quantidade: ";color:#6d7b91}
+ .composition-list td.actions{grid-column:2;grid-row:1;display:flex;gap:8px;align-items:center;justify-content:flex-end;white-space:nowrap}
+ .composition-list td.actions .link{font-size:13px;padding:7px 5px;min-height:34px}
+ .composition-list .inline-edit{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+ .composition-list .inline-edit input{width:100px;max-width:100%;flex:1 1 90px}
+ .composition-list .inline-edit select{width:85px;flex:0 0 85px}
+ .composition-list .inline-edit button{min-height:38px}
+}
+@media(max-width:390px){
+ .composition-list tr{grid-template-columns:minmax(0,1fr)}
+ .composition-list td.actions{grid-column:1;grid-row:3;justify-content:flex-start}
+ .composition-list td:nth-child(2){grid-row:2}
+}
