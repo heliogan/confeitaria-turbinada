@@ -157,3 +157,17 @@ td{border-bottom-color:#edf0f7}
  .composition-list td.actions{grid-column:1;grid-row:3;justify-content:flex-start}
  .composition-list td:nth-child(2){grid-row:2}
 }
+
+/* Navegação das cinco secções da receita */
+.tabstrip{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:18px}
+.tabstrip button{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:10px 13px;border:1px solid #d4e0ef;border-radius:11px;background:#fff;color:#173d78;font-size:13px;font-weight:600;line-height:1.25;transition:background-color .15s,border-color .15s}
+.tabstrip button .recipe-tab-icon{display:block;width:19px;height:19px;flex:0 0 19px}
+.tabstrip button:hover{border-color:#37659d;background:#f0f5fc}
+.tabstrip button.active,.tabstrip button.active:hover{border-color:#07377e;background:#07377e;color:#fff}
+.tabstrip button:focus-visible{outline:3px solid #e6b63b;outline-offset:2px}
+@media (max-width:700px){
+  .tabstrip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .tabstrip button{width:100%;min-width:0;min-height:69px;flex-direction:column;gap:5px;text-align:center;padding:10px 7px;font-size:13px}
+  .tabstrip button .recipe-tab-icon{width:21px;height:21px;flex-basis:21px}
+  .tabstrip button:last-child{grid-column:1/-1;min-height:61px;flex-direction:row;gap:10px}
+}
