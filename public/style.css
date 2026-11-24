@@ -171,3 +171,18 @@ td{border-bottom-color:#edf0f7}
   .tabstrip button .recipe-tab-icon{width:21px;height:21px;flex-basis:21px}
   .tabstrip button:last-child{grid-column:1/-1;min-height:61px;flex-direction:row;gap:10px}
 }
+
+/* Valor de materiais por componente, preservando o custo preciso no cálculo */
+.composition-list td.component-cost{font-weight:650;color:#123b77;white-space:nowrap}
+.component-cost-summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 10px;margin-top:8px;border-top:1px solid #dbe3f0;color:#173d78;font-size:14px}
+.component-cost-summary strong{font-size:16px}
+@media(max-width:700px){
+ .composition-list tr{grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto auto}
+ .composition-list td.component-cost{grid-column:1/-1;grid-row:3;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:6px 0;font-size:14px;white-space:normal}
+ .composition-list td.component-cost:before{content:"Custo no lote";font-size:12px;font-weight:600;color:#62758e}
+ .composition-list td.actions{grid-column:2;grid-row:1}
+ .composition-list .component-cost-summary{padding:15px 0}
+}
+@media(max-width:390px){
+ .composition-list td.actions{grid-column:1;grid-row:4;justify-content:flex-start}
+}
