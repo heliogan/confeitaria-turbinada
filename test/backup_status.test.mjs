@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {hasMeaningfulData,normalizeBackupMeta,backupPending,nextRevision,markBackup} from '../public/backup-status.js';
+const defaults={currency:'BRL',desiredMonthlySalary:3000,monthlyWorkHours:180,workDaysPerMonth:22,workHoursPerDay:8};
+const empty=()=>({ingredients:[],recipes:[],recipeItems:[],fixedExpenses:[],marketPrices:[],settings:{...defaults}});
+test('base vazia não exige backup',()=>{assert.equal(hasMeaningfulData(empty(),defaults),false);assert.equal(backupPending(normalizeBackupMeta(null,false),false),false)});
+test('dados legados são considerados sem backup comprovado',()=>{const d=empty();d.ingredients.push({id:'1'});const m=normalizeBackupMeta(null,hasMeaningfulData(d,defaults));assert.equal(backupPending(m,true),true)});
+test('alterações após exportação reativam aviso',()=>{let m=nextRevision(normalizeBackupMeta(null,false));m=markBackup(m,'2026-11-24T14:00:00.000Z');assert.equal(backupPending(m,true),false);assert.equal(backupPending(nextRevision(m),true),true)});
+test('configuração alterada também precisa de backup',()=>{const d=empty();d.settings.currency='EUR';assert.equal(hasMeaningfulData(d,defaults),true)});
+test('metadados de backup inválidos não são assumidos como válidos',()=>{assert.equal(backupPending(normalizeBackupMeta({revision:-1,backedUpRevision:-2},true),true),true)});
