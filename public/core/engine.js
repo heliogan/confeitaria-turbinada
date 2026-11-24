@@ -97,6 +97,25 @@ export function calculateMaterialCost(recipeId, ctx) {
     };
     return calculate(recipeId);
 }
+/** Custo de materiais de uma linha da composição, sem mão de obra ou despesas fixas. */
+export function calculateComponentMaterialCost(item, ctx) {
+    assertFiniteNonnegative(item.quantity, 'Quantidade do componente');
+    if (item.sourceType === 'ingredient') {
+        const ingredient = ctx.ingredients.find(i => i.id === item.sourceId);
+        if (!ingredient)
+            throw new Error(`Ingrediente inexistente: ${item.sourceId}`);
+        return ingredientCost(ingredient, item.quantity, item.unit);
+    }
+    if (item.sourceType === 'recipe') {
+        const source = ctx.recipes.find(r => r.id === item.sourceId);
+        if (!source)
+            throw new Error(`Sub-receita inexistente: ${item.sourceId}`);
+        assertPositive(source.yieldQuantity, `Rendimento (${source.name})`);
+        const amount = convertQuantity(item.quantity, item.unit, source.yieldUnit);
+        return calculateMaterialCost(source.id, ctx) * amount / source.yieldQuantity;
+    }
+    throw new Error(`Tipo de componente inválido: ${item.id}`);
+}
 /** Horas mensais para salário e dias × horas diárias para fixos são independentes. */
 export function calculateLaborCost(recipe, ctx) {
     assertPositive(ctx.settings.monthlyWorkHours, 'Horas mensais');
