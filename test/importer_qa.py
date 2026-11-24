@@ -23,6 +23,12 @@ def main():
             }''',{'bytes':b64,'name':filename})
             assert expected in out['model']
             assert out['ingredients'] and out['recipes'] and out['recipeItems']
+            if expected=='Anterior':
+                names=[x['name'] for x in out['recipes']]
+                for required in ('Fatia Princesa','Fatia Maracujá','Fatia Red Velvet','Tortinha de Limão','Tortinha de Maracujá','Massa Baunilha','Massa Chocolate','Massa Red Velvet'):
+                    assert required in names, (required,names)
+                assert len(names)==len(set(names)), 'Nomes duplicados de receitas: '+str(names)
+                print('PASS nomes específicos e sem duplicação',len(names))
             ingredients={x['id'] for x in out['ingredients']};recipes={x['id'] for x in out['recipes']}
             missing=[x for x in out['recipeItems'] if x['recipeId'] not in recipes or x['sourceId'] not in (recipes if x['sourceType']=='recipe' else ingredients)]
             assert not missing,missing
