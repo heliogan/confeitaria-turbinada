@@ -45,3 +45,12 @@ td{border-bottom-color:#edf0f7}
 @media(max-width:800px){nav{border-color:#e1e7f0;background:#fff}.brand strong{font-size:18px}.brandicon{height:46px;width:46px}.top{min-height:70px}.brand small{font-size:10px}}
 
 .import-warnings{max-height:240px;overflow-y:auto;margin:10px 0;padding:12px;background:var(--surface,#f8f9fc);border:1px solid #d9e1ef;border-radius:8px;font-size:.86rem}.import-warnings li{margin-bottom:6px}
+
+/* v0.8 — lembretes de cópia de segurança */
+.backup-chip{border:1px solid #d3dfeb;border-radius:40px;padding:7px 10px;color:#37638b;background:#f0f6fc;font-size:12px;white-space:nowrap}
+.backup-chip.pending{color:#77510e;background:#fff4d7;border-color:#ead197}
+.backup-reminder{margin-top:0;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.backup-reminder p{flex:1;min-width:170px;color:inherit}
+.backup-reminder .ghost{background:#fff;font-size:12px;white-space:nowrap}
+.backup-panel{border-left:4px solid #e9b83f}
+@media(max-width:600px){.topright #status{display:none}.topright .backup-chip{font-size:10px;padding:6px 8px}.backup-reminder{align-items:flex-start}.backup-reminder p{flex-basis:100%}}
