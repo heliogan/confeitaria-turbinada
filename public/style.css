@@ -63,3 +63,18 @@ td{border-bottom-color:#edf0f7}
 .file-picker-input:focus-visible + .file-picker-button{outline:3px solid #e9b83f;outline-offset:3px}
 .file-picker-name{flex:1;min-width:145px;overflow-wrap:anywhere;font-size:13px;color:#526482}
 @media(max-width:480px){.file-picker-row{align-items:flex-start;flex-direction:column;gap:8px}.file-picker-name{min-width:0}}
+
+/* Modo de preparo — editor Markdown leve */
+.preparation-panel textarea{display:block;width:100%;min-height:240px;padding:14px;border:1px solid #c9d4e6;border-radius:10px;background:#fff;color:#162953;font:15px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;resize:vertical;tab-size:2}
+.preparation-panel textarea:focus{outline:2px solid #e9b83f;outline-offset:2px}
+.markdown-toolbar{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0 13px}
+.markdown-toolbar button{min-width:40px;font-size:13px;padding:8px 12px}
+.preparation-preview{margin-top:20px;padding:18px;border:1px solid #d9e2ee;border-radius:12px;background:#f8faff}
+.preparation-preview h3{margin:0 0 12px}
+.markdown-output{overflow-wrap:anywhere;color:#273852;line-height:1.7}
+.markdown-output p{color:inherit;margin:0 0 12px}
+.markdown-output h2,.markdown-output h3,.markdown-output h4{font-family:inherit;color:#06245b;font-weight:750;margin:16px 0 9px}
+.markdown-output h2{font-size:20px}.markdown-output h3{font-size:17px}.markdown-output h4{font-size:15px}
+.markdown-output ul,.markdown-output ol{margin:8px 0 16px;padding-left:26px}
+.markdown-output li{padding-left:2px;margin:5px 0}
+@media(max-width:600px){.preparation-panel textarea{min-height:220px}.preparation-preview{padding:12px}.markdown-toolbar{gap:5px}.markdown-toolbar button{padding:8px 10px}}
