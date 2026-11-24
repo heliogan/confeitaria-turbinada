@@ -85,3 +85,37 @@ td{border-bottom-color:#edf0f7}
 .preparation-readonly{padding:8px 0 12px;min-height:100px}
 .preparation-readonly p:last-child,.preparation-readonly ul:last-child,.preparation-readonly ol:last-child{margin-bottom:0}
 @media(max-width:600px){.preparation-heading{align-items:flex-start}.preparation-heading button{width:100%}}
+
+/* Tabelas de ingredientes e receitas como cartões em ecrãs pequenos */
+@media (max-width: 700px) {
+  #ingredient-results .table-wrap,
+  .recipe-list-panel .table-wrap {overflow:visible;}
+  #ingredient-results table,
+  .recipe-list-panel table {display:block;width:100%;border:0;}
+  #ingredient-results thead,
+  .recipe-list-panel thead {display:none;}
+  #ingredient-results tbody,
+  .recipe-list-panel tbody {display:grid;gap:12px;}
+  #ingredient-results tr,
+  .recipe-list-panel tr {display:grid;gap:8px;padding:16px;border:1px solid #dce4ef;border-radius:12px;background:#fff;box-shadow:0 2px 8px #05245409;min-width:0;}
+  #ingredient-results td,
+  .recipe-list-panel td {display:flex;align-items:baseline;justify-content:space-between;gap:12px;min-width:0;padding:0;border:0;text-align:right;overflow-wrap:anywhere;}
+  #ingredient-results td:before,
+  .recipe-list-panel td:before {color:#667891;font-size:12px;font-weight:600;text-align:left;flex-shrink:0;}
+  #ingredient-results td:first-child,
+  .recipe-list-panel td:first-child {font-size:17px;color:#06245b;text-align:left;justify-content:flex-start;padding-bottom:8px;border-bottom:1px solid #edf1f6;}
+  #ingredient-results td:first-child strong,
+  .recipe-list-panel td:first-child strong {overflow-wrap:anywhere;}
+  #ingredient-results td:nth-child(2):before {content:"Compra";}
+  #ingredient-results td:nth-child(3):before {content:"Preço pago";}
+  #ingredient-results td:nth-child(4):before {content:"Custo base";}
+  .recipe-list-panel td:nth-child(2):before {content:"Rendimento";}
+  .recipe-list-panel td:nth-child(3):before {content:"Custo unitário";}
+  .recipe-list-panel td:nth-child(4):before {content:"Preço escolhido";}
+  #ingredient-results td.actions,
+  .recipe-list-panel td.actions {display:flex;justify-content:flex-end;align-items:center;gap:8px;padding-top:9px;border-top:1px solid #edf1f6;text-align:right;}
+  #ingredient-results td.actions button,
+  .recipe-list-panel td.actions button {padding:9px 12px;min-height:39px;border-radius:9px;border:1px solid #d7e1f0;background:#f4f7fc;font-weight:650;}
+  #ingredient-results td.actions button.danger,
+  .recipe-list-panel td.actions button.danger {background:#fff8f8;border-color:#f0d9d7;}
+}
