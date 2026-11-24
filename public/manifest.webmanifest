@@ -1,6 +1,6 @@
 {
-  "name": "Confeitaria Turbinada — Precificação",
-  "short_name": "Turbinada",
+  "name": "Precificação Turbinada",
+  "short_name": "Precificação Turbinada",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
