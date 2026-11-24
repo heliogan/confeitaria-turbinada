@@ -12,7 +12,7 @@ test('Renderiza títulos, negrito, itálico e listas',()=>{
 });
 test('Não interpreta HTML ou atributos perigosos',()=>{
   const html=renderPreparation('<script>alert(1)</script>\n\n- <img src=x onerror=alert(1)>');
-  assert.doesNotMatch(html,/<script|<img|onerror=/i);
+  assert.doesNotMatch(html,/<script\b|<img\b/i);
   assert.match(html,/&lt;script&gt;/);
 });
 test('Texto vazio produz saída vazia',()=>assert.equal(renderPreparation('   '),''));
