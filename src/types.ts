@@ -17,6 +17,8 @@ export interface Recipe {
   // O tempo da receita final INCLUI a preparação das sub-receitas utilizadas.
   productionMinutes: number;
   sellingPrice: number | null;
+  /** Texto Markdown opcional; não participa da precificação. */
+  preparation?: string | null;
 }
 
 export interface RecipeItem {
