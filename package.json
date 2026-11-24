@@ -1,12 +1,13 @@
 {
   "name": "confeitaria-turbinada-precificacao",
   "private": true,
-  "version": "0.7.0-qa",
+  "version": "0.8.0-qa",
   "type": "module",
   "scripts": {
     "build:core": "tsc --target ES2022 --module ES2022 --moduleResolution node --outDir public/core --rootDir src src/types.ts src/engine.ts",
     "start": "python3 -m http.server 8080 --directory public",
     "test": "tsc --module NodeNext --moduleResolution NodeNext --target ES2022 --outDir .testdist src/types.ts src/engine.ts test/engine.test.ts test/node-shims.d.ts && node --test .testdist/test/*.test.js",
+    "test:backup-status": "node --test test/backup_status.test.mjs",
     "test:backup": "node test/backup_qa.mjs",
     "test:importer": "python test/importer_qa.py",
     "test:e2e": "python test/browser_qa.py"
