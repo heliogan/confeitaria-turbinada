@@ -1,0 +1,18 @@
+[
+  {
+    "model": "Anterior",
+    "ingredients": 84,
+    "recipes": 29,
+    "items": 263,
+    "recipeRefs": 2,
+    "warnings": 48
+  },
+  {
+    "model": "Turbinada",
+    "ingredients": 16,
+    "recipes": 3,
+    "items": 6,
+    "recipeRefs": 0,
+    "warnings": 16
+  }
+]
